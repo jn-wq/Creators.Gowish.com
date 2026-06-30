@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { useLanguage, type Lang } from "@/lib/i18n";
 
 const GowishLogo = () => (
   <svg viewBox="0 0 487 295" aria-label="Ønskeskyen" className="h-5 w-auto fill-current">
@@ -11,27 +12,54 @@ const GowishLogo = () => (
   </svg>
 );
 
-const nav = [
-  { label: "Platform", hash: "#platform" },
-  { label: "Fordele", hash: "#fordele" },
-  { label: "Kom i gang", hash: "#kom-i-gang" },
-  { label: "Learning Bank", to: "/learning-bank" },
-];
+function LanguageToggle() {
+  const { lang, setLang } = useLanguage();
+  const langs: { code: Lang; label: string }[] = [
+    { code: "en", label: "EN" },
+    { code: "da", label: "DA" },
+  ];
+  return (
+    <div className="hidden md:flex items-center gap-0.5 rounded-full border border-line bg-bg p-0.5">
+      {langs.map(({ code, label }) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => setLang(code)}
+          className={[
+            "rounded-full px-3 py-1 text-[13px] font-semibold transition-colors",
+            lang === code
+              ? "bg-ink text-bg"
+              : "text-ink-3 hover:text-ink",
+          ].join(" ")}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Header() {
+  const { t } = useLanguage();
+  const nav = t.header.nav;
+  const ctaHref = t.header.nav[1]?.hash ?? "#get-started";
+
   return (
     <header className="sticky top-4 z-50 mx-auto w-[min(1180px,calc(100%-2rem))]">
       <div className="flex items-center justify-between rounded-full border border-line bg-bg/85 px-5 py-3 backdrop-blur-md shadow-[0_1px_0_rgba(30,41,59,0.04),0_12px_40px_-12px_rgba(30,41,59,0.18)]">
         <Link to="/" className="flex items-center gap-2.5 text-ink">
           <GowishLogo />
           <span className="text-[16px] font-semibold tracking-tight">
-            Ønskeskyen <span className="text-ink-3 font-normal">Creators</span>
+            {t.header.title.split(" ")[0]}{" "}
+            <span className="text-ink-3 font-normal">
+              {t.header.title.split(" ").slice(1).join(" ")}
+            </span>
           </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-ink-2">
           {nav.map((n) =>
-            n.to ? (
+            "to" in n ? (
               <Link
                 key={n.label}
                 to={n.to}
@@ -51,12 +79,15 @@ export function Header() {
           )}
         </nav>
 
-        <a
-          href="#kom-i-gang"
-          className="btn-accent !py-2.5 !px-5 text-[14px]"
-        >
-          Bliv creator <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
+          <a
+            href={ctaHref}
+            className="btn-accent !py-2.5 !px-5 text-[14px]"
+          >
+            {t.header.cta} <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </div>
     </header>
   );

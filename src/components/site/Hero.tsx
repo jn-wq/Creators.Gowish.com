@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 function TikTokIcon({ className = "" }: { className?: string }) {
   return (
@@ -35,14 +36,10 @@ const orbitDots = [
   { x: 88, y: 75, Icon: PinterestIcon, bg: "bg-cream"      },
 ];
 
-const stats = [
-  { n: "3,6M",   l: "Brugere i Danmark"     },
-  { n: "950+",   l: "Aktive creators"        },
-  { n: "41.200", l: "Gns. reach pr. creator" },
-  { n: "75.000", l: "Partnershops"           },
-];
-
 export function Hero() {
+  const { t } = useLanguage();
+  const h = t.hero;
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-70" />
@@ -62,35 +59,34 @@ export function Hero() {
         <div className="inline-flex items-center gap-2 rounded-full border border-line bg-bg/80 backdrop-blur px-3.5 py-1.5 text-[13px] text-ink-2 mb-7">
           <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
           <span className="font-medium">
-            Creator Takeover 2026 — <span className="text-accent-ink font-semibold">Nu åben for ansøgninger</span>
+            {h.badge.split(" — ")[0]} — <span className="text-accent-ink font-semibold">{h.badge.split(" — ")[1]}</span>
           </span>
         </div>
 
         <h1 className="text-[clamp(2.8rem,7.5vw,6rem)] font-semibold leading-[0.97] tracking-[-0.035em] text-ink mx-auto max-w-[18ch]">
-          Forvandl dine<br />
-          anbefalinger til en{" "}
+          {h.h1a}{" "}
           <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-            permanent destination
+            {h.h1italic}
           </span>
         </h1>
 
         <p className="mx-auto mt-7 max-w-[54ch] text-[18px] md:text-[20px] text-ink-2 leading-[1.45]">
-          Creator Marketing + Ønskeliste i ét. Bliv en del af{" "}
-          <span className="font-semibold text-ink">950+ creators</span> der driver inspiration,
-          ønsker og køb — med et permanent link i bio.
+          {h.subtitle}{" "}
+          <span className="font-semibold text-ink">{h.subtitleBold}</span>{" "}
+          {h.subtitleEnd}
         </p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href="#kom-i-gang" className="btn-accent">
-            Bliv creator <ArrowRight className="h-4 w-4" />
+          <a href={t.header.nav[1]?.hash ?? "#get-started"} className="btn-accent">
+            {h.btn1} <ArrowRight className="h-4 w-4" />
           </a>
-          <a href="#fordele" className="btn-ghost">
-            Se fordelene
+          <a href={t.header.nav[0]?.hash ?? "#benefits"} className="btn-ghost">
+            {h.btn2}
           </a>
         </div>
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-line bg-line">
-          {stats.map((s) => (
+          {h.stats.map((s) => (
             <div key={s.l} className="bg-bg p-6 text-left">
               <div className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold tracking-[-0.04em] leading-none text-ink">
                 {s.n}

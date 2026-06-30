@@ -1,3 +1,5 @@
+import { useLanguage } from "@/lib/i18n";
+
 const brands = [
   "Matas", "Elgiganten", "ASOS", "Zalando", "H&M", "Illum", "Magasin",
   "Sephora", "Nike", "Adidas", "Lego", "Bang & Olufsen", "Bodum",
@@ -6,10 +8,11 @@ const brands = [
 ];
 
 export function BrandMarquee() {
+  const { t } = useLanguage();
   const list = [...brands, ...brands];
   return (
     <section id="brands" className="border-y border-line bg-bg-alt py-10 overflow-hidden">
-      <p className="text-center label-kpi mb-6">75.000+ partnershops på platformen</p>
+      <p className="text-center label-kpi mb-6">{t.brandMarquee.label}</p>
       <div className="relative">
         <div className="marquee">
           {list.map((b, i) => (

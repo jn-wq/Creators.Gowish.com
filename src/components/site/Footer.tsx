@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useLanguage } from "@/lib/i18n";
 
 const GowishLogo = () => (
   <svg viewBox="0 0 487 295" aria-label="Ønskeskyen" className="h-5 w-auto fill-current text-ink">
@@ -11,6 +12,9 @@ const GowishLogo = () => (
 );
 
 export function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
   return (
     <footer className="mt-32 border-t border-line bg-bg-alt">
       <div className="mx-auto max-w-[1180px] px-6 py-16">
@@ -19,44 +23,24 @@ export function Footer() {
             <Link to="/" className="flex items-center gap-2.5 font-semibold text-ink">
               <GowishLogo />
               <span className="text-[17px]">
-                Ønskeskyen <span className="text-ink-3 font-normal">Creators</span>
+                {f.title.split(" ")[0]}{" "}
+                <span className="text-ink-3 font-normal">
+                  {f.title.split(" ").slice(1).join(" ")}
+                </span>
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-[15px] text-ink-3 leading-relaxed">
-              Et creator-program bygget rundt om de produkter, du alligevel ville
-              anbefale — med et permanent hjem og en permanent udbetaling.
+              {f.tagline}
             </p>
           </div>
 
-          <FooterCol
-            title="Program"
-            links={[
-              { label: "Fordele", href: "/#fordele" },
-              { label: "Platform", href: "/#platform" },
-              { label: "Kom i gang", href: "/#kom-i-gang" },
-              { label: "Sammenligning", href: "/#sammenligning" },
-            ]}
-          />
-          <FooterCol
-            title="Ressourcer"
-            links={[
-              { label: "Learning Bank", href: "/learning-bank" },
-              { label: "Case Studies", href: "/learning-bank" },
-              { label: "Partnershops", href: "/#brands" },
-            ]}
-          />
-          <FooterCol
-            title="Virksomhed"
-            links={[
-              { label: "gowish.com", href: "https://gowish.com" },
-              { label: "Support", href: "#" },
-              { label: "Presse", href: "#" },
-            ]}
-          />
+          <FooterCol title={f.programCol.title} links={f.programCol.links} />
+          <FooterCol title={f.resourcesCol.title} links={f.resourcesCol.links} />
+          <FooterCol title={f.companyCol.title} links={f.companyCol.links} />
         </div>
 
         <div className="mt-14 flex flex-col gap-3 md:flex-row md:items-center md:justify-between border-t border-line pt-6 text-[13px] text-ink-3">
-          <p>© {new Date().getFullYear()} Ønskeskyen · Creator Universe</p>
+          <p>© {new Date().getFullYear()} {f.copyright}</p>
           <p className="label-kpi !text-ink-3">v1.0 · Beta</p>
         </div>
       </div>
@@ -69,7 +53,7 @@ function FooterCol({
   links,
 }: {
   title: string;
-  links: { label: string; href: string }[];
+  links: readonly { label: string; href: string }[];
 }) {
   return (
     <div>
