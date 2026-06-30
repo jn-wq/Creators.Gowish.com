@@ -128,7 +128,7 @@ function StudyPage() {
           <p className="eyebrow mb-6">{labels.performance}</p>
           <div className="grid grid-cols-2 gap-px rounded-2xl border border-line bg-line overflow-hidden">
             {/* Expected column */}
-            <div className="bg-bg-soft p-8 md:p-10">
+            <div className="bg-bg-alt p-8 md:p-10">
               <p className="label-kpi text-ink-3 mb-6">{labels.expected}</p>
               <div className="space-y-6">
                 <div>
