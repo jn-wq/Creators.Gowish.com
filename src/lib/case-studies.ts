@@ -7,20 +7,30 @@ export type CreatorVideo = {
   tiktokUrl?: string;
 };
 
-export type CaseStudy = {
-  slug: string;
+export type CaseStudyLocale = {
   title: string;
   category: string;
-  creator: string;
-  handle: string;
-  readTime: string;
-  headline: string;
   excerpt: string;
+  readTime: string;
   metrics: { value: string; label: string }[];
   sections: { heading: string; body: string }[];
   quote?: { text: string; attribution: string };
+};
+
+export type CaseStudy = {
+  slug: string;
+  creator: string;
+  handle: string;
+  headline: string;
+  en: CaseStudyLocale;
+  da: CaseStudyLocale;
   videos?: CreatorVideo[];
 };
+
+/** Convenience: get the locale-specific fields for a study */
+export function studyLocale(s: CaseStudy, lang: "en" | "da"): CaseStudyLocale & { creator: string; handle: string; slug: string; headline: string } {
+  return { ...s[lang], creator: s.creator, handle: s.handle, slug: s.slug, headline: s.headline };
+}
 
 export const categories = [
   "All",
@@ -35,157 +45,245 @@ export const categories = [
 export const caseStudies: CaseStudy[] = [
   {
     slug: "from-200-followers-to-12k-monthly",
-    title: "From 200 followers to €12k monthly commission in 9 months",
-    category: "Beauty & Skincare",
     creator: "Mille Lykke",
     handle: "@millelykke",
-    readTime: "8 min read",
     headline: "€12.400/mo",
-    excerpt:
-      "Mille turned a tiny skincare niche audience into a permanent income stream by treating her wishlist as a curated shelf — not a dump of links.",
-    metrics: [
-      { value: "€12.400", label: "Monthly commission" },
-      { value: "9 mo", label: "Time to scale" },
-      { value: "11.8%", label: "Avg. conversion" },
-      { value: "47", label: "Active wishes" },
-    ],
-    sections: [
-      {
-        heading: "The setup",
-        body: "Mille started with a niche audience of 200 skincare nerds. Instead of chasing reach, she chose depth — every wish on her list was a product she'd already used for 30+ days, with a personal note explaining who it's for and who it's not.",
-      },
-      {
-        heading: "What worked",
-        body: "Grouping wishes by skin concern (barrier repair, oily, sensitive) made the list scannable. Followers stopped DM'ing 'what do you use?' and started shopping directly. Permanent links meant traffic kept rolling in from old posts.",
-      },
-      {
-        heading: "The lesson",
-        body: "A small audience with high trust outperforms a large audience with low trust — every time. Treat your wishlist like a recommendation you'd give a close friend.",
-      },
-    ],
-    quote: {
-      text: "I stopped trying to sound like an influencer. The moment my list felt like a friend's bathroom shelf, sales 5x'd.",
-      attribution: "Mille Lykke",
+    en: {
+      title: "From 200 followers to €12k monthly commission in 9 months",
+      category: "Beauty & Skincare",
+      readTime: "8 min read",
+      excerpt: "Mille turned a tiny skincare niche audience into a permanent income stream by treating her wishlist as a curated shelf — not a dump of links.",
+      metrics: [
+        { value: "€12.400", label: "Monthly commission" },
+        { value: "9 mo", label: "Time to scale" },
+        { value: "11.8%", label: "Avg. conversion" },
+        { value: "47", label: "Active wishes" },
+      ],
+      sections: [
+        { heading: "The setup", body: "Mille started with a niche audience of 200 skincare nerds. Instead of chasing reach, she chose depth — every wish on her list was a product she'd already used for 30+ days, with a personal note explaining who it's for and who it's not." },
+        { heading: "What worked", body: "Grouping wishes by skin concern (barrier repair, oily, sensitive) made the list scannable. Followers stopped DM'ing 'what do you use?' and started shopping directly. Permanent links meant traffic kept rolling in from old posts." },
+        { heading: "The lesson", body: "A small audience with high trust outperforms a large audience with low trust — every time. Treat your wishlist like a recommendation you'd give a close friend." },
+      ],
+      quote: { text: "I stopped trying to sound like an influencer. The moment my list felt like a friend's bathroom shelf, sales 5x'd.", attribution: "Mille Lykke" },
+    },
+    da: {
+      title: "Fra 200 followers til €12k månedlig kommission på 9 måneder",
+      category: "Skønhed & Hudpleje",
+      readTime: "8 min læsning",
+      excerpt: "Mille forvandlede et lille hudpleje-nichepublikum til en permanent indkomst ved at behandle sin ønskeliste som en kurateret reol — ikke et link-dump.",
+      metrics: [
+        { value: "€12.400", label: "Månedlig kommission" },
+        { value: "9 mdr.", label: "Tid til skalering" },
+        { value: "11,8%", label: "Gns. konvertering" },
+        { value: "47", label: "Aktive ønsker" },
+      ],
+      sections: [
+        { heading: "Opsætningen", body: "Mille startede med et nichepublikum på 200 hudplejenørder. I stedet for at jage rækkevidde valgte hun dybde — hvert ønske på hendes liste var et produkt hun allerede havde brugt i 30+ dage, med en personlig note om hvem det er til og hvem det ikke er til." },
+        { heading: "Hvad der virkede", body: "At gruppere ønsker efter hudproblem (barrierreparation, fedtet, sensitiv) gjorde listen overskuelig. Followers holdt op med at DM'e 'hvad bruger du?' og begyndte at handle direkte. Permanente links betød at trafik blev ved med at rulle ind fra gamle opslag." },
+        { heading: "Læren", body: "Et lille publikum med høj tillid overgår altid et stort publikum med lav tillid. Behandl din ønskeliste som en anbefaling du ville give en nær ven." },
+      ],
+      quote: { text: "Jeg holdt op med at forsøge at lyde som en influencer. I det øjeblik min liste føltes som en vens badeværelseshylde, 5-dobledtes salget.", attribution: "Mille Lykke" },
     },
   },
   {
     slug: "fashion-edit-that-converts-7x",
-    title: "The seasonal edit format that converts 7× better than story drops",
-    category: "Fashion",
     creator: "Aya Karim",
     handle: "@ayakrm",
-    readTime: "6 min read",
     headline: "7× conv.",
-    excerpt:
-      "Why building 4 seasonal 'edits' a year beats daily story affiliate links — with the exact format Aya uses to ship hers.",
-    metrics: [
-      { value: "7×", label: "Conversion lift" },
-      { value: "4", label: "Edits / year" },
-      { value: "€38k", label: "Annual payout" },
-      { value: "62%", label: "Returning shoppers" },
-    ],
-    sections: [
-      {
-        heading: "The format",
-        body: "Each edit is a 12-piece capsule built around one wearable theme: 'Soft tailoring for warm offices', 'Cold-girl layers under €120'. Aya plans them like a magazine issue — drop date, hero image, intro note.",
-      },
-      {
-        heading: "Why it works",
-        body: "Followers know the rhythm. They wait for drops, save the list, share it with friends. The list outlives the post by months.",
-      },
-      {
-        heading: "Steal this",
-        body: "Pick 4 dates a year. Pick one tight theme per drop. Write 2 sentences per piece. Don't overproduce — the curation is the product.",
-      },
-    ],
+    en: {
+      title: "The seasonal edit format that converts 7× better than story drops",
+      category: "Fashion",
+      readTime: "6 min read",
+      excerpt: "Why building 4 seasonal 'edits' a year beats daily story affiliate links — with the exact format Aya uses to ship hers.",
+      metrics: [
+        { value: "7×", label: "Conversion lift" },
+        { value: "4", label: "Edits / year" },
+        { value: "€38k", label: "Annual payout" },
+        { value: "62%", label: "Returning shoppers" },
+      ],
+      sections: [
+        { heading: "The format", body: "Each edit is a 12-piece capsule built around one wearable theme: 'Soft tailoring for warm offices', 'Cold-girl layers under €120'. Aya plans them like a magazine issue — drop date, hero image, intro note." },
+        { heading: "Why it works", body: "Followers know the rhythm. They wait for drops, save the list, share it with friends. The list outlives the post by months." },
+        { heading: "Steal this", body: "Pick 4 dates a year. Pick one tight theme per drop. Write 2 sentences per piece. Don't overproduce — the curation is the product." },
+      ],
+    },
+    da: {
+      title: "Det sæsonbaserede edit-format der konverterer 7× bedre end story-drops",
+      category: "Mode",
+      readTime: "6 min læsning",
+      excerpt: "Hvorfor det at bygge 4 sæsonbestemte 'edits' om året slår daglige story affiliate-links — med det præcise format Aya bruger.",
+      metrics: [
+        { value: "7×", label: "Konverteringsløft" },
+        { value: "4", label: "Edits / år" },
+        { value: "€38k", label: "Årlig udbetaling" },
+        { value: "62%", label: "Tilbagevendende shoppere" },
+      ],
+      sections: [
+        { heading: "Formatet", body: "Hvert edit er en 12-stykkers kapsel bygget rundt om ét bærbart tema: 'Blød skræddersyring til varme kontorer', 'Cold-girl lag under €120'. Aya planlægger dem som et magasin — drop-dato, hero-billede, intro-note." },
+        { heading: "Hvorfor det virker", body: "Followers kender rytmen. De venter på drops, gemmer listen, deler den med venner. Listen overlever opslaget med måneder." },
+        { heading: "Stjæl det her", body: "Vælg 4 datoer om året. Vælg ét stramt tema per drop. Skriv 2 sætninger per stykke. Overproduc ikke — kureringen er produktet." },
+      ],
+    },
   },
   {
     slug: "newsletter-to-wishlist-funnel",
-    title: "How a weekly newsletter funnels 22% of subscribers to a wishlist",
-    category: "Lifestyle",
     creator: "Theo Bishop",
     handle: "theo.substack",
-    readTime: "5 min read",
     headline: "22% CTR",
-    excerpt:
-      "The 3-line PS that turned Theo's lifestyle newsletter into the top traffic source for his GoWish list.",
-    metrics: [
-      { value: "22%", label: "Click-through" },
-      { value: "8.1k", label: "Subs" },
-      { value: "€4.2k", label: "Monthly" },
-      { value: "94s", label: "Avg. time on list" },
-    ],
-    sections: [
-      { heading: "The PS that pays", body: "At the bottom of every Sunday issue: one line about what he's actually buying this week, linked to his GoWish list. No hard sell, no banner. Just a friend telling you what's on his desk." },
-      { heading: "Why it scales", body: "Newsletter readers are already in 'recommendation mode'. They click because they trust the voice — not because of a discount code." },
-      { heading: "Apply it", body: "Audit your highest-trust surface (newsletter, podcast outro, pinned story). Add one quiet line linking your wishlist. Measure for 4 weeks." },
-    ],
+    en: {
+      title: "How a weekly newsletter funnels 22% of subscribers to a wishlist",
+      category: "Lifestyle",
+      readTime: "5 min read",
+      excerpt: "The 3-line PS that turned Theo's lifestyle newsletter into the top traffic source for his GoWish list.",
+      metrics: [
+        { value: "22%", label: "Click-through" },
+        { value: "8.1k", label: "Subs" },
+        { value: "€4.2k", label: "Monthly" },
+        { value: "94s", label: "Avg. time on list" },
+      ],
+      sections: [
+        { heading: "The PS that pays", body: "At the bottom of every Sunday issue: one line about what he's actually buying this week, linked to his GoWish list. No hard sell, no banner. Just a friend telling you what's on his desk." },
+        { heading: "Why it scales", body: "Newsletter readers are already in 'recommendation mode'. They click because they trust the voice — not because of a discount code." },
+        { heading: "Apply it", body: "Audit your highest-trust surface (newsletter, podcast outro, pinned story). Add one quiet line linking your wishlist. Measure for 4 weeks." },
+      ],
+    },
+    da: {
+      title: "Hvordan et ugentligt nyhedsbrev sender 22% af abonnenter til en ønskeliste",
+      category: "Livsstil",
+      readTime: "5 min læsning",
+      excerpt: "Den 3-linjers PS der forvandlede Theos livsstils-nyhedsbrev til den største trafikskilde for hans GoWish-liste.",
+      metrics: [
+        { value: "22%", label: "Klik-igennem" },
+        { value: "8.1k", label: "Abonnenter" },
+        { value: "€4.2k", label: "Månedlig" },
+        { value: "94s", label: "Gns. tid på liste" },
+      ],
+      sections: [
+        { heading: "PS'en der betaler", body: "I bunden af hvert søndagsblad: én linje om hvad han faktisk køber denne uge, linket til hans GoWish-liste. Ingen hårdt salg, ingen banner. Bare en ven der fortæller hvad der er på hans skrivebord." },
+        { heading: "Hvorfor det skalerer", body: "Nyhedsbrevslæsere er allerede i 'anbefalingstilstand'. De klikker fordi de stoler på stemmen — ikke på grund af en rabatkode." },
+        { heading: "Anvend det", body: "Gennemgå din højeste-tillid overflade (nyhedsbrev, podcast-outro, fastgjort story). Tilføj én stille linje der linker din ønskeliste. Mål i 4 uger." },
+      ],
+    },
   },
   {
     slug: "interior-mood-boards-as-wishlists",
-    title: "Mood-board wishlists: how an interior creator made browsing feel like Pinterest",
-    category: "Home & Interior",
     creator: "Sara Vinter",
     handle: "@sarawinterhome",
-    readTime: "7 min read",
     headline: "+340% saves",
-    excerpt:
-      "Treating wishes as mood boards instead of catalogues — and why followers now save lists like they save recipes.",
-    metrics: [
-      { value: "340%", label: "Saves lift" },
-      { value: "11", label: "Themed lists" },
-      { value: "€6.8k", label: "Monthly" },
-      { value: "3.2", label: "Avg. items/order" },
-    ],
-    sections: [
-      { heading: "The shift", body: "Sara stopped making 'best of 2026' lists and started making mood lists: 'Sunday morning kitchen', 'Rainy reading corner', 'First apartment, second-hand first'." },
-      { heading: "Why it works", body: "People shop a mood, not a category. A mood gives permission to buy three things instead of one." },
-      { heading: "Try this week", body: "Take your last 20 wishes. Re-group them by feeling, not by room. Rename the lists like a Spotify playlist." },
-    ],
+    en: {
+      title: "Mood-board wishlists: how an interior creator made browsing feel like Pinterest",
+      category: "Home & Interior",
+      readTime: "7 min read",
+      excerpt: "Treating wishes as mood boards instead of catalogues — and why followers now save lists like they save recipes.",
+      metrics: [
+        { value: "340%", label: "Saves lift" },
+        { value: "11", label: "Themed lists" },
+        { value: "€6.8k", label: "Monthly" },
+        { value: "3.2", label: "Avg. items/order" },
+      ],
+      sections: [
+        { heading: "The shift", body: "Sara stopped making 'best of 2026' lists and started making mood lists: 'Sunday morning kitchen', 'Rainy reading corner', 'First apartment, second-hand first'." },
+        { heading: "Why it works", body: "People shop a mood, not a category. A mood gives permission to buy three things instead of one." },
+        { heading: "Try this week", body: "Take your last 20 wishes. Re-group them by feeling, not by room. Rename the lists like a Spotify playlist." },
+      ],
+    },
+    da: {
+      title: "Mood board-ønskelister: hvordan en indretningscreator fik browsing til at føles som Pinterest",
+      category: "Hjem & Indretning",
+      readTime: "7 min læsning",
+      excerpt: "At behandle ønsker som mood boards i stedet for kataloger — og hvorfor followers nu gemmer lister som de gemmer opskrifter.",
+      metrics: [
+        { value: "340%", label: "Gem-løft" },
+        { value: "11", label: "Tematiske lister" },
+        { value: "€6.8k", label: "Månedlig" },
+        { value: "3,2", label: "Gns. varer/ordre" },
+      ],
+      sections: [
+        { heading: "Skiftet", body: "Sara holdt op med at lave 'bedste i 2026'-lister og begyndte at lave stemningslister: 'Søndagsmorgen-køkken', 'Regnvejrs-læsehjørne', 'Første lejlighed, genbrugsfirst'." },
+        { heading: "Hvorfor det virker", body: "Folk shopper en stemning, ikke en kategori. En stemning giver tilladelse til at købe tre ting i stedet for én." },
+        { heading: "Prøv det denne uge", body: "Tag dine sidste 20 ønsker. Omgrupper dem efter følelse, ikke efter rum. Omdøb listerne som en Spotify-playliste." },
+      ],
+    },
   },
   {
     slug: "wellness-creator-trust-flywheel",
-    title: "The trust flywheel: turning skeptical wellness readers into repeat shoppers",
-    category: "Wellness",
     creator: "Noor Halim",
     handle: "@noorhalim",
-    readTime: "6 min read",
     headline: "68% return",
-    excerpt:
-      "Why wellness creators have the highest skepticism — and the framework Noor uses to convert that skepticism into long-term loyalty.",
-    metrics: [
-      { value: "68%", label: "Returning" },
-      { value: "€9.1k", label: "Monthly" },
-      { value: "14d", label: "Avg. decision" },
-      { value: "0", label: "Sponsored posts" },
-    ],
-    sections: [
-      { heading: "Receipts > claims", body: "Every wish includes a note: 'I've used this for X weeks. Here's what changed. Here's what didn't.' No miracle language." },
-      { heading: "Slow the funnel", body: "Wellness shoppers don't impulse-buy. Noor's list is built for people who'll come back in 2 weeks, not 2 minutes." },
-      { heading: "Permanent > viral", body: "A permanent link beats a viral reel because trust compounds. Reels reset; lists accumulate." },
-    ],
+    en: {
+      title: "The trust flywheel: turning skeptical wellness readers into repeat shoppers",
+      category: "Wellness",
+      readTime: "6 min read",
+      excerpt: "Why wellness creators have the highest skepticism — and the framework Noor uses to convert that skepticism into long-term loyalty.",
+      metrics: [
+        { value: "68%", label: "Returning" },
+        { value: "€9.1k", label: "Monthly" },
+        { value: "14d", label: "Avg. decision" },
+        { value: "0", label: "Sponsored posts" },
+      ],
+      sections: [
+        { heading: "Receipts > claims", body: "Every wish includes a note: 'I've used this for X weeks. Here's what changed. Here's what didn't.' No miracle language." },
+        { heading: "Slow the funnel", body: "Wellness shoppers don't impulse-buy. Noor's list is built for people who'll come back in 2 weeks, not 2 minutes." },
+        { heading: "Permanent > viral", body: "A permanent link beats a viral reel because trust compounds. Reels reset; lists accumulate." },
+      ],
+    },
+    da: {
+      title: "Tillidssvinghjulet: forvandling af skeptiske wellness-læsere til tilbagevendende shoppere",
+      category: "Wellness",
+      readTime: "6 min læsning",
+      excerpt: "Hvorfor wellness-creators har den højeste skepsis — og den ramme Noor bruger til at konvertere den skepsis til langsigtet loyalitet.",
+      metrics: [
+        { value: "68%", label: "Tilbagevendende" },
+        { value: "€9.1k", label: "Månedlig" },
+        { value: "14 dage", label: "Gns. beslutning" },
+        { value: "0", label: "Sponsorerede opslag" },
+      ],
+      sections: [
+        { heading: "Beviser > påstande", body: "Hvert ønske inkluderer en note: 'Jeg har brugt dette i X uger. Her er hvad der ændrede sig. Her er hvad der ikke gjorde.' Ingen mirakelsproget." },
+        { heading: "Sænk farten i tragten", body: "Wellness-shoppere impulskøber ikke. Noors liste er bygget til folk der vender tilbage om 2 uger, ikke 2 minutter." },
+        { heading: "Permanent > viral", body: "Et permanent link slår en viral reel fordi tillid akkumuleres. Reels nulstilles; lister ophobes." },
+      ],
+    },
   },
   {
     slug: "tech-reviewer-permanent-stack",
-    title: "Why a tech reviewer ditched Amazon links for a permanent GoWish stack",
-    category: "Tech & Gadgets",
     creator: "Lukas Berg",
     handle: "@lukasreviews",
-    readTime: "5 min read",
     headline: "€18k Q1",
-    excerpt:
-      "Lukas swapped a wall of Amazon links for one curated GoWish stack — and tripled commission in a quarter.",
-    metrics: [
-      { value: "€18k", label: "Q1 payout" },
-      { value: "3×", label: "Vs. prior tool" },
-      { value: "29", label: "Curated picks" },
-      { value: "4.7★", label: "Audience NPS" },
-    ],
-    sections: [
-      { heading: "The problem", body: "Affiliate links rotted. Half were dead within 6 months. Followers complained, trust dipped, commission cratered." },
-      { heading: "The fix", body: "One permanent 'My current stack' wishlist. Updated quarterly. Featured in every video description, pinned in every thread." },
-      { heading: "The takeaway", body: "If your list is the answer to 'what do you actually use?' — it earns forever." },
-    ],
+    en: {
+      title: "Why a tech reviewer ditched Amazon links for a permanent GoWish stack",
+      category: "Tech & Gadgets",
+      readTime: "5 min read",
+      excerpt: "Lukas swapped a wall of Amazon links for one curated GoWish stack — and tripled commission in a quarter.",
+      metrics: [
+        { value: "€18k", label: "Q1 payout" },
+        { value: "3×", label: "Vs. prior tool" },
+        { value: "29", label: "Curated picks" },
+        { value: "4.7★", label: "Audience NPS" },
+      ],
+      sections: [
+        { heading: "The problem", body: "Affiliate links rotted. Half were dead within 6 months. Followers complained, trust dipped, commission cratered." },
+        { heading: "The fix", body: "One permanent 'My current stack' wishlist. Updated quarterly. Featured in every video description, pinned in every thread." },
+        { heading: "The takeaway", body: "If your list is the answer to 'what do you actually use?' — it earns forever." },
+      ],
+    },
+    da: {
+      title: "Hvorfor en tech-anmelder droppede Amazon-links til fordel for en permanent GoWish-stack",
+      category: "Tech & Gadgets",
+      readTime: "5 min læsning",
+      excerpt: "Lukas byttede en væg af Amazon-links ud med én kurateret GoWish-stack — og tredobledede kommissionen på et kvartal.",
+      metrics: [
+        { value: "€18k", label: "Q1 udbetaling" },
+        { value: "3×", label: "Vs. tidligere værktøj" },
+        { value: "29", label: "Kuraterede valg" },
+        { value: "4.7★", label: "Publikums NPS" },
+      ],
+      sections: [
+        { heading: "Problemet", body: "Affiliate-links rådnede. Halvdelen var døde inden for 6 måneder. Followers klagede, tillid faldt, kommission styrtdykkede." },
+        { heading: "Løsningen", body: "Én permanent 'Min nuværende stack'-ønskeliste. Opdateret kvartalsvis. Fremhævet i hver videobeskrivelse, fastgjort i hvert tråd." },
+        { heading: "Konklusionen", body: "Hvis din liste er svaret på 'hvad bruger du faktisk?' — tjener den for evigt." },
+      ],
+    },
   },
 ];
 
