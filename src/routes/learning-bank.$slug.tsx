@@ -31,10 +31,27 @@ function StudyPage() {
   const sl = studyLocale(study, lang);
   const related = caseStudies.filter((c) => c.slug !== study.slug).slice(0, 3);
 
+  const labels = {
+    brandXGoWish: lang === "da" ? "Brand x GoWish" : "Brand x GoWish",
+    objective: lang === "da" ? "Formål" : "Objective",
+    background: lang === "da" ? "Forudgående baggrund" : "Pre-campaign background",
+    performance: lang === "da" ? "Performance — Rækkevidde & Visninger" : "Performance — Reach & Impressions",
+    expected: lang === "da" ? "Forventet" : "Expected",
+    actual: lang === "da" ? "Faktisk" : "Actual",
+    reach: lang === "da" ? "Rækkevidde" : "Reach",
+    impressions: lang === "da" ? "Visninger" : "Impressions",
+    engagement: lang === "da" ? "Engagement" : "Engagement",
+    likes: lang === "da" ? "Likes" : "Likes",
+    engagementRate: lang === "da" ? "Engagement rate" : "Engagement rate",
+    saves: lang === "da" ? "Gemte" : "Saves",
+    comments: lang === "da" ? "Kommentarer" : "Comments",
+  };
+
   return (
     <div className="min-h-screen pt-4">
       <Header />
       <main>
+        {/* A) Hero */}
         <article className="mx-auto max-w-[860px] px-6 pt-16 pb-12">
           <Link to="/learning-bank" className="inline-flex items-center gap-2 text-[14px] text-ink-3 hover:text-accent">
             <ArrowLeft className="h-4 w-4" /> {lb.backLink}
@@ -86,9 +103,64 @@ function StudyPage() {
           )}
         </article>
 
-        {/* Creator videos */}
+        {/* B) Brand Brief */}
+        <section className="mx-auto max-w-[860px] px-6 pb-14">
+          <div className="rounded-3xl bg-ink text-bg p-10 md:p-14">
+            <p className="eyebrow !text-bg/50">{labels.brandXGoWish}</p>
+            <h2 className="title-l mt-4 text-[36px] md:text-[48px] text-bg">
+              {sl.brandBrief.brandName}
+            </h2>
+            <div className="mt-8 grid md:grid-cols-2 gap-8">
+              <div>
+                <p className="label-kpi !text-bg/50 mb-3">{labels.objective}</p>
+                <p className="text-[17px] leading-[1.6] text-bg/90">{sl.brandBrief.objective}</p>
+              </div>
+              <div>
+                <p className="label-kpi !text-bg/50 mb-3">{labels.background}</p>
+                <p className="text-[17px] leading-[1.6] text-bg/90">{sl.brandBrief.background}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* C) Performance — Reach & Impressions */}
+        <section className="mx-auto max-w-[860px] px-6 pb-14">
+          <p className="eyebrow mb-6">{labels.performance}</p>
+          <div className="grid grid-cols-2 gap-px rounded-2xl border border-line bg-line overflow-hidden">
+            {/* Expected column */}
+            <div className="bg-bg-soft p-8 md:p-10">
+              <p className="label-kpi text-ink-3 mb-6">{labels.expected}</p>
+              <div className="space-y-6">
+                <div>
+                  <div className="stat-num text-[32px] md:text-[40px] text-ink-3">{sl.reachData.expectedReach}</div>
+                  <div className="label-kpi mt-1 text-ink-3">{labels.reach}</div>
+                </div>
+                <div>
+                  <div className="stat-num text-[32px] md:text-[40px] text-ink-3">{sl.reachData.expectedImpressions}</div>
+                  <div className="label-kpi mt-1 text-ink-3">{labels.impressions}</div>
+                </div>
+              </div>
+            </div>
+            {/* Actual column */}
+            <div className="bg-bg p-8 md:p-10">
+              <p className="label-kpi text-accent mb-6">{labels.actual}</p>
+              <div className="space-y-6">
+                <div>
+                  <div className="stat-num text-[32px] md:text-[40px] text-accent">{sl.reachData.actualReach}</div>
+                  <div className="label-kpi mt-1">{labels.reach}</div>
+                </div>
+                <div>
+                  <div className="stat-num text-[32px] md:text-[40px] text-accent">{sl.reachData.actualImpressions}</div>
+                  <div className="label-kpi mt-1">{labels.impressions}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* D) Video section — 2-row × 3-col grid */}
         {creatorVideos[study.slug] && (
-          <section className="mx-auto max-w-[1180px] px-6 pt-8 pb-16">
+          <section className="mx-auto max-w-[1180px] px-6 pt-4 pb-16">
             <div className="flex items-end justify-between gap-6 mb-8">
               <div>
                 <p className="eyebrow">{lb.watchPlaybook}</p>
@@ -101,7 +173,7 @@ function StudyPage() {
                 {creatorVideos[study.slug].length} {lb.videoClips}
               </span>
             </div>
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               {creatorVideos[study.slug].map((v, i) => (
                 <div key={i} className="flex flex-col gap-3">
                   <VideoPlaceholder
@@ -118,7 +190,30 @@ function StudyPage() {
           </section>
         )}
 
-        {/* Related */}
+        {/* E) Engagement metrics */}
+        <section className="mx-auto max-w-[860px] px-6 pb-16">
+          <p className="eyebrow mb-6">{labels.engagement}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl border border-line bg-line overflow-hidden">
+            <div className="bg-cream-soft p-6 md:p-8">
+              <div className="stat-num text-[28px] md:text-[34px] text-ink">{sl.engagement.likes}</div>
+              <div className="label-kpi mt-2">{labels.likes}</div>
+            </div>
+            <div className="bg-cream-soft p-6 md:p-8">
+              <div className="stat-num text-[28px] md:text-[34px] text-accent">{sl.engagement.engagementRate}</div>
+              <div className="label-kpi mt-2">{labels.engagementRate}</div>
+            </div>
+            <div className="bg-cream-soft p-6 md:p-8">
+              <div className="stat-num text-[28px] md:text-[34px] text-ink">{sl.engagement.saves}</div>
+              <div className="label-kpi mt-2">{labels.saves}</div>
+            </div>
+            <div className="bg-cream-soft p-6 md:p-8">
+              <div className="stat-num text-[28px] md:text-[34px] text-ink">{sl.engagement.comments}</div>
+              <div className="label-kpi mt-2">{labels.comments}</div>
+            </div>
+          </div>
+        </section>
+
+        {/* F) Related studies */}
         <section className="mx-auto max-w-[1180px] px-6 pt-16 pb-8 border-t border-line">
           <p className="eyebrow mb-6">{lb.moreStudies}</p>
           <div className="grid gap-6 md:grid-cols-3">
