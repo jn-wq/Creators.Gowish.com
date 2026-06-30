@@ -7,9 +7,9 @@ export const translations = {
     header: {
       title: "GoWish Creators",
       nav: [
-        { label: "Benefits", hash: "#fordele" },
-        { label: "Get Started", hash: "#kom-i-gang" },
-        { label: "Comparison", hash: "#sammenligning" },
+        { label: "Benefits", hash: "/#fordele" },
+        { label: "Get Started", hash: "/#kom-i-gang" },
+        { label: "Comparison", hash: "/#sammenligning" },
         { label: "Learning Bank", to: "/learning-bank" },
       ],
       cta: "Become a creator",
@@ -195,9 +195,9 @@ export const translations = {
     header: {
       title: "Ønskeskyen Creators",
       nav: [
-        { label: "Fordele", hash: "#fordele" },
-        { label: "Kom i gang", hash: "#kom-i-gang" },
-        { label: "Sammenligning", hash: "#sammenligning" },
+        { label: "Fordele", hash: "/#fordele" },
+        { label: "Kom i gang", hash: "/#kom-i-gang" },
+        { label: "Sammenligning", hash: "/#sammenligning" },
         { label: "Learning Bank", to: "/learning-bank" },
       ],
       cta: "Bliv creator",
