@@ -97,7 +97,7 @@ function LearningBankPage() {
                       </div>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-2 text-accent-ink font-semibold group-hover:gap-3 transition-all">
+                  <span className="inline-flex items-center gap-2 bg-accent text-bg font-semibold px-5 py-3 rounded-full w-fit group-hover:bg-accent/90 transition-colors">
                     {lb.readPlaybook} <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
@@ -133,7 +133,9 @@ function LearningBankPage() {
                         <div className="text-[12px] text-ink-3">{c.handle}</div>
                       </div>
                     </div>
-                    <span className="stat-num text-[18px] text-accent-ink">{c.headline}</span>
+                    <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-ink bg-pink rounded-full px-3.5 py-1.5 group-hover:bg-pink-2 transition-colors">
+                      {lb.readPlaybook} <ArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </Link>
               );
