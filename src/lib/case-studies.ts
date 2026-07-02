@@ -518,8 +518,6 @@ export const caseStudies: CaseStudy[] = [
       },
     },
   },
-];
-
   {
     slug: "estee-lauder-beauty-campaign",
     creator: "Emma Sørensen",
