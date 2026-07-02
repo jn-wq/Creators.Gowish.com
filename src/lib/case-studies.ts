@@ -5,6 +5,14 @@ export type CreatorVideo = {
   aspect: "9/16" | "16/9" | "4/5" | "1/1";
   description: string;
   tiktokUrl?: string;
+  // Per-video performance stats (optional)
+  creatorName?: string;
+  creatorHandle?: string;
+  views?: string;
+  likes?: string;
+  comments?: string;
+  saves?: string;
+  shares?: string;
 };
 
 export type CaseStudyLocale = {
@@ -12,6 +20,10 @@ export type CaseStudyLocale = {
   category: string;
   excerpt: string;
   readTime: string;
+  // Optional campaign metadata (shown in hero)
+  period?: string;
+  setup?: string;
+  challengeText?: string;
   metrics: { value: string; label: string }[];
   sections: { heading: string; body: string }[];
   quote?: { text: string; attribution: string };
@@ -508,6 +520,92 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
+  {
+    slug: "estee-lauder-beauty-campaign",
+    creator: "Emma Sørensen",
+    handle: "@emmaskincare",
+    headline: "1,32M views",
+    en: {
+      title: "Estée Lauder: 502K wishes, 1.32M video views in 4 weeks",
+      category: "Beauty & Skincare",
+      readTime: "6 min read",
+      period: "23 Feb – 20 Mar 2026",
+      setup: "9 creators · 3 channels",
+      challengeText: "Estée Lauder wanted to drive measurable wishes in the skincare category and activate a younger demographic — without burning budget on fleeting ads.",
+      excerpt: "How Estée Lauder partnered with 9 GoWish creators across 3 channels to generate over half a million wishes and 282K clicks — in a single 4-week campaign.",
+      metrics: [
+        { value: "502.726", label: "Wishes ↑42%" },
+        { value: "281.737", label: "Wishlists ↑46%" },
+        { value: "282.642", label: "Clicks ↑55%" },
+        { value: "1,32M", label: "Video Views" },
+        { value: "7,8%", label: "Engagement Rate" },
+        { value: "1,07M kr", label: "Pending Revenue" },
+      ],
+      sections: [
+        { heading: "The challenge", body: "Estée Lauder had invested heavily in display and paid social — with diminishing returns. They needed a format that could reach a younger skincare-curious audience through trusted voices, and convert that attention into measurable purchase intent rather than just impressions." },
+        { heading: "The GoWish approach", body: "GoWish assembled a network of 9 skincare creators across TikTok, Instagram, and YouTube. Each creator built a curated Estée Lauder wishlist — not a sponsored post, but a permanent recommendation shelf. The campaign ran for 4 weeks with each creator posting 2–3 pieces of content linking back to their wishlist." },
+        { heading: "The results", body: "502,726 wishes created. 281,737 wishlists saved. 282,642 clicks — up 55% against benchmark. 1.07M kr in pending revenue from wishes created during the campaign window. The permanent wishlist format meant traffic continued to accumulate weeks after the campaign ended." },
+      ],
+      brandBrief: {
+        brandName: "Estée Lauder",
+        objective: "Drive measurable skincare wishes among a younger demographic through trusted creator voices — with a permanent format that outlives the campaign.",
+        background: "GoWish approached Estée Lauder in January 2026 as part of the Creator Takeover programme. The brand had seen declining engagement on traditional influencer posts and was open to a new format. GoWish proposed the wishlist-as-shelf model: each creator would maintain a permanent Estée Lauder product list rather than publishing a one-off sponsored post.",
+      },
+      reachData: {
+        expectedReach: "280.000",
+        actualReach: "412.000",
+        expectedImpressions: "820.000",
+        actualImpressions: "1.320.000",
+      },
+      engagement: {
+        likes: "3.677",
+        engagementRate: "7,8%",
+        saves: "297",
+        comments: "86",
+      },
+    },
+    da: {
+      title: "Estée Lauder: 502K ønsker, 1,32M videovisninger på 4 uger",
+      category: "Skønhed & Hudpleje",
+      readTime: "6 min læsning",
+      period: "23. feb – 20. marts 2026",
+      setup: "9 creators · 3 kanaler",
+      challengeText: "Estée Lauder ville drive målbare ønsker i skincare-kategorien og aktivere en yngre målgruppe — uden at brænde budget på flygtige annoncer.",
+      excerpt: "Hvordan Estée Lauder samarbejdede med 9 GoWish creators på tværs af 3 kanaler for at generere over en halv million ønsker og 282K klik — på en enkelt 4-ugers kampagne.",
+      metrics: [
+        { value: "502.726", label: "Ønsker ↑42%" },
+        { value: "281.737", label: "Ønskelister ↑46%" },
+        { value: "282.642", label: "Klik ↑55%" },
+        { value: "1,32M", label: "Videovisninger" },
+        { value: "7,8%", label: "Engagement Rate" },
+        { value: "1,07M kr", label: "Pending Revenue" },
+      ],
+      sections: [
+        { heading: "Udfordringen", body: "Estée Lauder havde investeret tungt i display og betalt social — med faldende afkast. De havde brug for et format der kunne nå et yngre hudplejenysgerrigt publikum via betroede stemmer, og konvertere den opmærksomhed til målbar købsintention frem for blot visninger." },
+        { heading: "GoWish-tilgangen", body: "GoWish samlede et netværk af 9 skincare-creators på tværs af TikTok, Instagram og YouTube. Hver creator byggede en kurateret Estée Lauder-ønskeliste — ikke et sponsoreret opslag, men en permanent anbefalingshylde. Kampagnen kørte i 4 uger med hver creator der postede 2–3 stykker indhold der linkede tilbage til deres ønskeliste." },
+        { heading: "Resultaterne", body: "502.726 ønsker oprettet. 281.737 ønskelister gemt. 282.642 klik — op 55% mod benchmark. 1,07M kr i pending revenue fra ønsker oprettet i kampagnevinduet. Det permanente ønskelisteformat betød at trafik fortsatte med at akkumulere uger efter kampagnens afslutning." },
+      ],
+      brandBrief: {
+        brandName: "Estée Lauder",
+        objective: "Drive målbare skincare-ønsker hos en yngre målgruppe via betroede creator-stemmer — med et permanent format der overlever kampagnen.",
+        background: "GoWish henvendte sig til Estée Lauder i januar 2026 som del af Creator Takeover-programmet. Brandet havde oplevet faldende engagement på traditionelle influencer-opslag og var åbne for et nyt format. GoWish foreslog ønskeliste-som-hylde-modellen: hver creator ville vedligeholde en permanent Estée Lauder-produktliste frem for at publicere et engangssponsoreret opslag.",
+      },
+      reachData: {
+        expectedReach: "280.000",
+        actualReach: "412.000",
+        expectedImpressions: "820.000",
+        actualImpressions: "1.320.000",
+      },
+      engagement: {
+        likes: "3.677",
+        engagementRate: "7,8%",
+        saves: "297",
+        comments: "86",
+      },
+    },
+  },
+];
+
 export const creatorVideos: Record<string, CreatorVideo[]> = {
   "from-200-followers-to-12k-monthly": [
     { title: "Reklam @GoWish", duration: "0:32", tone: "coral", aspect: "9/16", description: "Alva Leia viser sin GoWish-wishlist frem og fortæller hvorfor den fungerer som hendes faste skincare-shelf.", tiktokUrl: "https://www.tiktok.com/@alvaleiablomdahl/video/7638669551365934358" },
@@ -556,5 +654,13 @@ export const creatorVideos: Record<string, CreatorVideo[]> = {
     { title: "Setup tour: the desk behind the reviews", duration: "2:11", tone: "cream", aspect: "4/5", description: "Every product on the desk, linked to the same permanent list." },
     { title: "Sonos in the stack: 4 months later", duration: "2:36", tone: "blue", aspect: "16/9", description: "An honest update on the Sonos Era 300 after four months of daily use — what changed in the review after living with it." },
     { title: "From 300 dead links to 1 list: the migration story", duration: "3:48", tone: "coral", aspect: "16/9", description: "How Lukas audited and collapsed his entire affiliate link history into a single permanent GoWish stack over one weekend." },
+  ],
+  "estee-lauder-beauty-campaign": [
+    { title: "Estée Lauder x GoWish — skincare routine", duration: "0:54", tone: "pink", aspect: "9/16", description: "Emma's barrier-repair routine featuring the Estée Lauder collab wishlist.", creatorName: "Emma Sørensen", creatorHandle: "@emmaskincare", views: "412K", likes: "1.240", comments: "34", saves: "98", shares: "14" },
+    { title: "Min favorit skincare fra Estée Lauder", duration: "0:41", tone: "coral", aspect: "9/16", description: "Sofia's honest review of the hero products from the Estée Lauder wishlist.", creatorName: "Sofia Lind", creatorHandle: "@sofiallnd", views: "318K", likes: "980", comments: "22", saves: "76", shares: "11" },
+    { title: "Estée Lauder til hverdagen", duration: "0:38", tone: "pink", aspect: "9/16", description: "Marie shows her everyday skincare picks from the GoWish collaboration list.", creatorName: "Marie Holm", creatorHandle: "@marieglow", views: "287K", likes: "845", comments: "19", saves: "71", shares: "9" },
+    { title: "Glow-routine med Estée Lauder", duration: "0:47", tone: "cream", aspect: "9/16", description: "Caroline's evening glow routine using the products she curated for the campaign.", creatorName: "Caroline Dahl", creatorHandle: "@caro.beauty", views: "203K", likes: "612", comments: "12", saves: "52", shares: "8" },
+    { title: "Unboxing: Estée Lauder pr pakke", duration: "1:12", tone: "coral", aspect: "9/16", description: "Behind the scenes unboxing of the PR package — and which products made it onto the wishlist." },
+    { title: "Kampagnen bag tallene — hvad virkede?", duration: "2:28", tone: "cream", aspect: "16/9", description: "A post-campaign breakdown of which creators drove the most wishes and what content format worked best." },
   ],
 };
