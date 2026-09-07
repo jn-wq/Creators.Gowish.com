@@ -2,7 +2,14 @@ import { Wallet, Globe, TrendingUp, Gift, ShieldCheck, Sparkles } from "lucide-r
 import { useLanguage } from "@/lib/i18n";
 
 const icons = [Globe, Wallet, Gift, TrendingUp, ShieldCheck, Sparkles];
-const tints = ["bg-pink", "bg-blue-soft", "bg-cream-soft", "bg-pink", "bg-blue-soft", "bg-cream-soft"];
+const tints = [
+  "bg-pink",
+  "bg-blue-soft",
+  "bg-cream-soft",
+  "bg-pink",
+  "bg-blue-soft",
+  "bg-cream-soft",
+];
 
 export function Benefits() {
   const { t } = useLanguage();
@@ -15,9 +22,7 @@ export function Benefits() {
           <p className="eyebrow">{b.eyebrow}</p>
           <h2 className="title-l mt-4 text-[clamp(2rem,4.4vw,3.6rem)]">
             {b.h2a}{" "}
-            <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-              {b.h2italic}
-            </span>
+            <span className="font-['Fraunces'] italic font-normal text-accent">{b.h2italic}</span>
           </h2>
         </div>
         <p className="text-[18px] text-ink-2 leading-[1.45] max-w-[58ch] md:justify-self-end">
@@ -30,7 +35,9 @@ export function Benefits() {
           const Icon = icons[i];
           return (
             <div key={card.n} className="bg-bg p-8 flex flex-col gap-5">
-              <div className={`h-11 w-11 rounded-full ${tints[i]} grid place-items-center text-accent`}>
+              <div
+                className={`h-11 w-11 rounded-full ${tints[i]} grid place-items-center text-accent`}
+              >
                 <Icon className="h-5 w-5" strokeWidth={1.8} />
               </div>
               <div>

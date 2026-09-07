@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useLanguage, type Lang } from "@/lib/i18n";
 
 const GowishLogo = () => (
@@ -12,14 +13,16 @@ const GowishLogo = () => (
   </svg>
 );
 
-function LanguageToggle() {
+function LanguageToggle({ className = "" }: { className?: string }) {
   const { lang, setLang } = useLanguage();
   const langs: { code: Lang; label: string }[] = [
     { code: "en", label: "EN" },
     { code: "da", label: "DA" },
   ];
   return (
-    <div className="hidden md:flex items-center gap-0.5 rounded-full border border-line bg-bg p-0.5">
+    <div
+      className={`flex items-center gap-0.5 rounded-full border border-line bg-bg p-0.5 ${className}`}
+    >
       {langs.map(({ code, label }) => (
         <button
           key={code}
@@ -27,9 +30,7 @@ function LanguageToggle() {
           onClick={() => setLang(code)}
           className={[
             "rounded-full px-3 py-1 text-[13px] font-semibold transition-colors",
-            lang === code
-              ? "bg-ink text-bg"
-              : "text-ink-3 hover:text-ink",
+            lang === code ? "bg-ink text-bg" : "text-ink-3 hover:text-ink",
           ].join(" ")}
         >
           {label}
@@ -43,11 +44,12 @@ export function Header() {
   const { t } = useLanguage();
   const nav = t.header.nav;
   const ctaHref = t.header.nav[1]?.hash ?? "#get-started";
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-4 z-50 mx-auto w-[min(1180px,calc(100%-2rem))]">
       <div className="flex items-center justify-between rounded-full border border-line bg-bg/85 px-5 py-3 backdrop-blur-md shadow-[0_1px_0_rgba(30,41,59,0.04),0_12px_40px_-12px_rgba(30,41,59,0.18)]">
-        <Link to="/" className="flex items-center gap-2.5 text-ink">
+        <Link to="/" className="flex items-center gap-2.5 text-ink" onClick={() => setOpen(false)}>
           <GowishLogo />
           <span className="text-[16px] font-semibold tracking-tight">
             {t.header.title.split(" ")[0]}{" "}
@@ -60,10 +62,47 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-ink-2">
           {nav.map((n) =>
             "to" in n ? (
+              <Link key={n.label} to={n.to} className="hover:text-accent transition-colors">
+                {n.label}
+              </Link>
+            ) : (
+              <a key={n.label} href={n.hash} className="hover:text-accent transition-colors">
+                {n.label}
+              </a>
+            ),
+          )}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <LanguageToggle className="hidden md:flex" />
+          <a href={ctaHref} className="hidden md:inline-flex btn-accent !py-2.5 !px-5 text-[14px]">
+            {t.header.cta} <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink md:hidden"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <nav
+          id="mobile-nav"
+          className="mt-3 flex flex-col gap-1 rounded-3xl border border-line bg-bg p-3 shadow-[0_12px_40px_-12px_rgba(30,41,59,0.18)] md:hidden"
+        >
+          {nav.map((n) =>
+            "to" in n ? (
               <Link
                 key={n.label}
                 to={n.to}
-                className="hover:text-accent transition-colors"
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-[15px] font-medium text-ink-2 hover:bg-bg-alt hover:text-ink transition-colors"
               >
                 {n.label}
               </Link>
@@ -71,24 +110,25 @@ export function Header() {
               <a
                 key={n.label}
                 href={n.hash}
-                className="hover:text-accent transition-colors"
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-[15px] font-medium text-ink-2 hover:bg-bg-alt hover:text-ink transition-colors"
               >
                 {n.label}
               </a>
-            )
+            ),
           )}
+          <div className="mt-2 flex items-center gap-3 px-1">
+            <LanguageToggle />
+            <a
+              href={ctaHref}
+              onClick={() => setOpen(false)}
+              className="btn-accent flex-1 justify-center !py-2.5 text-[14px]"
+            >
+              {t.header.cta} <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </nav>
-
-        <div className="flex items-center gap-3">
-          <LanguageToggle />
-          <a
-            href={ctaHref}
-            className="btn-accent !py-2.5 !px-5 text-[14px]"
-          >
-            {t.header.cta} <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
-      </div>
+      )}
     </header>
   );
 }

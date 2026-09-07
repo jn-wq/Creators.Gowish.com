@@ -11,7 +11,16 @@ function TikTokIcon({ className = "" }: { className?: string }) {
 
 function InstagramIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <rect x="2" y="2" width="20" height="20" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
@@ -28,12 +37,12 @@ function PinterestIcon({ className = "" }: { className?: string }) {
 }
 
 const orbitDots = [
-  { x: 5,  y: 20, Icon: TikTokIcon,    bg: "bg-pink-2"     },
-  { x: 12, y: 60, Icon: InstagramIcon, bg: "bg-blue-soft-2"},
-  { x: 8,  y: 80, Icon: PinterestIcon, bg: "bg-cream"      },
-  { x: 91, y: 25, Icon: InstagramIcon, bg: "bg-pink-2"     },
-  { x: 94, y: 50, Icon: TikTokIcon,    bg: "bg-blue-soft-2"},
-  { x: 88, y: 75, Icon: PinterestIcon, bg: "bg-cream"      },
+  { x: 5, y: 20, Icon: TikTokIcon, bg: "bg-pink-2" },
+  { x: 12, y: 60, Icon: InstagramIcon, bg: "bg-blue-soft-2" },
+  { x: 8, y: 80, Icon: PinterestIcon, bg: "bg-cream" },
+  { x: 91, y: 25, Icon: InstagramIcon, bg: "bg-pink-2" },
+  { x: 94, y: 50, Icon: TikTokIcon, bg: "bg-blue-soft-2" },
+  { x: 88, y: 75, Icon: PinterestIcon, bg: "bg-cream" },
 ];
 
 export function Hero() {
@@ -59,20 +68,18 @@ export function Hero() {
         <div className="inline-flex items-center gap-2 rounded-full border border-line bg-bg/80 backdrop-blur px-3.5 py-1.5 text-[13px] text-ink-2 mb-7">
           <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
           <span className="font-medium">
-            {h.badge.split(" — ")[0]} — <span className="text-accent-ink font-semibold">{h.badge.split(" — ")[1]}</span>
+            {h.badge.split(" — ")[0]} —{" "}
+            <span className="text-accent-ink font-semibold">{h.badge.split(" — ")[1]}</span>
           </span>
         </div>
 
         <h1 className="text-[clamp(2.8rem,7.5vw,6rem)] font-semibold leading-[0.97] tracking-[-0.035em] text-ink mx-auto max-w-[18ch]">
           {h.h1a}{" "}
-          <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-            {h.h1italic}
-          </span>
+          <span className="font-['Fraunces'] italic font-normal text-accent">{h.h1italic}</span>
         </h1>
 
         <p className="mx-auto mt-7 max-w-[54ch] text-[18px] md:text-[20px] text-ink-2 leading-[1.45]">
-          {h.subtitle}{" "}
-          <span className="font-semibold text-ink">{h.subtitleBold}</span>{" "}
+          {h.subtitle} <span className="font-semibold text-ink">{h.subtitleBold}</span>{" "}
           {h.subtitleEnd}
         </p>
 

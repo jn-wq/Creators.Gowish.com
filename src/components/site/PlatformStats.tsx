@@ -11,9 +11,7 @@ export function PlatformStats() {
           <p className="eyebrow">{p.eyebrow}</p>
           <h2 className="title-l mt-4 text-[clamp(2rem,4.4vw,3.6rem)]">
             {p.h2a}{" "}
-            <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-              {p.h2italic}
-            </span>
+            <span className="font-['Fraunces'] italic font-normal text-accent">{p.h2italic}</span>
           </h2>
         </div>
         <p className="text-[18px] text-ink-2 leading-[1.45] max-w-[58ch] md:justify-self-end">
@@ -29,7 +27,11 @@ export function PlatformStats() {
               key={s.label}
               className={[
                 "p-7 flex flex-col gap-3",
-                variant === "featured" ? "bg-ink text-bg" : variant === "accent" ? "bg-accent text-white" : "bg-bg",
+                variant === "featured"
+                  ? "bg-ink text-bg"
+                  : variant === "accent"
+                    ? "bg-accent text-white"
+                    : "bg-bg",
               ].join(" ")}
             >
               <div
@@ -52,7 +54,11 @@ export function PlatformStats() {
                 <div
                   className={[
                     "text-[13px] mt-0.5 leading-[1.4]",
-                    variant === "featured" ? "text-white/65" : variant === "accent" ? "text-white/80" : "text-ink-3",
+                    variant === "featured"
+                      ? "text-white/65"
+                      : variant === "accent"
+                        ? "text-white/80"
+                        : "text-ink-3",
                   ].join(" ")}
                 >
                   {s.desc}

@@ -24,7 +24,7 @@ export function CTA() {
             {lang === "da" ? (
               <>
                 {c.h2a}{" "}
-                <span className="font-['Instrument_Serif'] italic font-normal text-accent">
+                <span className="font-['Fraunces'] italic font-normal text-accent">
                   {c.h2italic}
                 </span>{" "}
                 {"h2end" in c ? c.h2end : ""}
@@ -32,23 +32,18 @@ export function CTA() {
             ) : (
               <>
                 {c.h2a}{" "}
-                <span className="font-['Instrument_Serif'] italic font-normal text-accent">
+                <span className="font-['Fraunces'] italic font-normal text-accent">
                   {c.h2italic}
                 </span>
               </>
             )}
           </h2>
-          <p className="mt-6 text-[19px] text-bg/75 leading-[1.45] max-w-[50ch]">
-            {c.subtitle}
-          </p>
+          <p className="mt-6 text-[19px] text-bg/75 leading-[1.45] max-w-[50ch]">{c.subtitle}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#" className="btn-accent">
               {c.btn1} <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href="/learning-bank"
-              className="btn-ghost !border-bg/20 !text-bg hover:!bg-bg/10"
-            >
+            <a href="/learning-bank" className="btn-ghost !border-bg/20 !text-bg hover:!bg-bg/10">
               {c.btn2}
             </a>
           </div>

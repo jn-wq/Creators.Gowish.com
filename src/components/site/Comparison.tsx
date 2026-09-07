@@ -12,9 +12,7 @@ export function Comparison() {
           <p className="eyebrow">{c.eyebrow}</p>
           <h2 className="title-l mt-4 text-[clamp(2rem,4.4vw,3.6rem)]">
             {c.h2a}{" "}
-            <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-              {c.h2italic}
-            </span>
+            <span className="font-['Fraunces'] italic font-normal text-accent">{c.h2italic}</span>
           </h2>
         </div>
         <p className="text-[18px] text-ink-2 leading-[1.45] max-w-[58ch] md:justify-self-end">
@@ -31,9 +29,7 @@ export function Comparison() {
             </span>
             {c.col1}
           </div>
-          <div className="p-5 font-semibold text-[15px] text-bg/75">
-            {c.col2}
-          </div>
+          <div className="p-5 font-semibold text-[15px] text-bg/75">{c.col2}</div>
         </div>
         {c.rows.map(([label, gowish, other], i) => (
           <div

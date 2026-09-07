@@ -29,13 +29,9 @@ export function GetStarted() {
             <p className="eyebrow">{g.eyebrow}</p>
             <h2 className="title-l mt-4 text-[clamp(2rem,4.4vw,3.6rem)]">
               {g.h2a}{" "}
-              <span className="font-['Instrument_Serif'] italic font-normal text-accent">
-                {g.h2italic}
-              </span>
+              <span className="font-['Fraunces'] italic font-normal text-accent">{g.h2italic}</span>
             </h2>
-            <p className="mt-5 text-[19px] text-ink-2 leading-[1.45] max-w-[58ch]">
-              {g.subtitle}
-            </p>
+            <p className="mt-5 text-[19px] text-ink-2 leading-[1.45] max-w-[58ch]">{g.subtitle}</p>
           </div>
 
           <button
@@ -65,12 +61,8 @@ export function GetStarted() {
               </span>
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-5">
-              <p className="text-bg text-[18px] font-semibold leading-tight">
-                {g.videoTitle}
-              </p>
-              <p className="text-bg/80 text-[13px] mt-1">
-                {g.videoSubtitle}
-              </p>
+              <p className="text-bg text-[18px] font-semibold leading-tight">{g.videoTitle}</p>
+              <p className="text-bg/80 text-[13px] mt-1">{g.videoSubtitle}</p>
             </div>
           </button>
         </div>
@@ -78,7 +70,7 @@ export function GetStarted() {
         <ol className="mt-14 grid gap-6 md:grid-cols-3">
           {g.steps.map((s) => (
             <li key={s.n} className="card-paper p-8 flex flex-col gap-4 relative">
-              <span className="font-['Instrument_Serif'] italic text-[56px] leading-none text-accent">
+              <span className="font-['Fraunces'] italic text-[56px] leading-none text-accent">
                 {s.n}
               </span>
               <h3 className="text-[22px] font-semibold tracking-tight">{s.title}</h3>

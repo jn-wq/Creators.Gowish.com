@@ -1,10 +1,28 @@
 import { useLanguage } from "@/lib/i18n";
 
 const brands = [
-  "Matas", "Elgiganten", "ASOS", "Zalando", "H&M", "Illum", "Magasin",
-  "Sephora", "Nike", "Adidas", "Lego", "Bang & Olufsen", "Bodum",
-  "By Malene Birger", "Ganni", "Cos", "& Other Stories", "Arket",
-  "Jack & Jones", "Vero Moda", "Stine Goya", "Samsøe Samsøe",
+  "Matas",
+  "Elgiganten",
+  "ASOS",
+  "Zalando",
+  "H&M",
+  "Illum",
+  "Magasin",
+  "Sephora",
+  "Nike",
+  "Adidas",
+  "Lego",
+  "Bang & Olufsen",
+  "Bodum",
+  "By Malene Birger",
+  "Ganni",
+  "Cos",
+  "& Other Stories",
+  "Arket",
+  "Jack & Jones",
+  "Vero Moda",
+  "Stine Goya",
+  "Samsøe Samsøe",
 ];
 
 export function BrandMarquee() {
@@ -20,7 +38,7 @@ export function BrandMarquee() {
               key={i}
               className="text-[22px] md:text-[28px] font-semibold tracking-tight text-ink-2/80 whitespace-nowrap"
               style={{
-                fontFamily: i % 5 === 0 ? "Instrument Serif, serif" : undefined,
+                fontFamily: i % 5 === 0 ? "Fraunces, serif" : undefined,
                 fontStyle: i % 5 === 0 ? "italic" : undefined,
               }}
             >
