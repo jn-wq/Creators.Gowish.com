@@ -10,6 +10,7 @@ export const translations = {
         { label: "Benefits", hash: "/#fordele" },
         { label: "Get Started", hash: "/#kom-i-gang" },
         { label: "Comparison", hash: "/#sammenligning" },
+        { label: "Calculator", to: "/commission-calculator" },
         { label: "Cases", to: "/cases" },
         { label: "Learning Bank", to: "/learning-bank" },
       ],
@@ -38,7 +39,8 @@ export const translations = {
       eyebrow: "01 — Benefits",
       h2a: "Save it. Share it.",
       h2italic: "Earn from it.",
-      subtitle: "A creator program built around the products you'd already recommend — with a permanent home and a permanent payout.",
+      subtitle:
+        "A creator program built around the products you'd already recommend — with a permanent home and a permanent payout.",
       cards: [
         {
           n: "01",
@@ -92,7 +94,8 @@ export const translations = {
       eyebrow: "03 — Get Started",
       h2a: "Build, share, earn —",
       h2italic: "all in one app.",
-      subtitle: "From signup to first commission in less than a day. No outreach, no contracts, no chasing.",
+      subtitle:
+        "From signup to first commission in less than a day. No outreach, no contracts, no chasing.",
       steps: [
         {
           n: "01",
@@ -121,31 +124,34 @@ export const translations = {
       eyebrow: "04 — Comparison",
       h2a: "GoWish vs.",
       h2italic: "the rest.",
-      subtitle: "Most affiliate tools are built for storefronts. GoWish is built for the way creators actually recommend — list-first, permanent, personal.",
+      subtitle:
+        "Most affiliate tools are built for storefronts. GoWish is built for the way creators actually recommend — list-first, permanent, personal.",
       featureLabel: "Feature",
       col1: "GoWish Creator",
       col2: "Typical affiliate link",
       rows: [
-        ["Permanent home for recommendations",  true,  false],
-        ["Earn commission on every sale",        true,  true ],
-        ["75,000+ shops without outreach",       true,  false],
-        ["No application or waitlist",           true,  false],
-        ["Followers can re-shop anytime",        true,  false],
-        ["Built-in analytics dashboard",         true,  false],
-        ["Disappears after 24h stories",         false, true ],
+        ["Permanent home for recommendations", true, false],
+        ["Earn commission on every sale", true, true],
+        ["75,000+ shops without outreach", true, false],
+        ["No application or waitlist", true, false],
+        ["Followers can re-shop anytime", true, false],
+        ["Built-in analytics dashboard", true, false],
+        ["Disappears after 24h stories", false, true],
       ] as [string, boolean, boolean][],
     },
     cta: {
       eyebrow: "05 — Join",
       h2a: "Join the GoWish",
       h2italic: "creator universe.",
-      subtitle: "Join 950+ creators turning recommendations into permanent payouts. Beta access is open — no waitlist.",
+      subtitle:
+        "Join 950+ creators turning recommendations into permanent payouts. Beta access is open — no waitlist.",
       btn1: "Create my account",
       btn2: "Explore Learning Bank",
     },
     footer: {
       title: "GoWish Creators",
-      tagline: "A creator program built around the products you'd already recommend — with a permanent home and a permanent payout.",
+      tagline:
+        "A creator program built around the products you'd already recommend — with a permanent home and a permanent payout.",
       programCol: {
         title: "Program",
         links: [
@@ -160,6 +166,7 @@ export const translations = {
         links: [
           { label: "Learning Bank", href: "/learning-bank" },
           { label: "Case Studies", href: "/learning-bank" },
+          { label: "Commission Calculator", href: "/commission-calculator" },
           { label: "Partner Shops", href: "/#brands" },
         ],
       },
@@ -178,7 +185,8 @@ export const translations = {
       h1a: "Case studies",
       h1italic: "from creators",
       h1b: "who actually earn.",
-      subtitle: "No theory. Real numbers, real wishlists, real playbooks — shared by the GoWish creator community so you can borrow what works.",
+      subtitle:
+        "No theory. Real numbers, real wishlists, real playbooks — shared by the GoWish creator community so you can borrow what works.",
       searchPlaceholder: "Search case studies, creators, categories…",
       featuredLabel: "Featured study",
       allStudiesLabel: "All case studies",
@@ -188,8 +196,60 @@ export const translations = {
       watchPlaybook: "Watch the playbook",
       videoClips: "clips",
       moreStudies: "More from the Learning Bank",
-      categories: ["All", "Beauty & Skincare", "Fashion", "Lifestyle", "Home & Interior", "Wellness", "Tech & Gadgets"],
+      categories: [
+        "All",
+        "Beauty & Skincare",
+        "Fashion",
+        "Lifestyle",
+        "Home & Interior",
+        "Wellness",
+        "Tech & Gadgets",
+      ],
       readTime: (n: string) => `${n} min read`,
+    },
+    commissionCalculator: {
+      eyebrow: "Commission Calculator",
+      h1a: "See what you'd actually earn",
+      h1italic: "on GoWish.",
+      subtitle:
+        "Drag the sliders to model your storefront. Average brand commission is 8.5%, and GoWish pays out 80% of that back to you.",
+      salesLabel: "Storefront sales",
+      salesHint: "Gross value of products sold through your GoWish storefront",
+      salesMin: "$10K",
+      salesMid: "$1M",
+      salesMax: "$5M",
+      commissionLabel: "Brand commission rate",
+      commissionHint: "Average % brands pay per sale — 8.5% is our platform average",
+      commissionMin: "1%",
+      commissionMid: "8.5%",
+      commissionMax: "25%",
+      payoutLabel: "GoWish creator payout",
+      payoutHint: "Share of the brand commission that lands in your account",
+      payoutMin: "50%",
+      payoutMid: "80%",
+      payoutMax: "100%",
+      resetLabel: "Reset to GoWish defaults",
+      resultLabel: "Your take-home",
+      resultDesc: (sales: string, commission: string, payout: string) =>
+        `On ${sales} in storefront sales at ${commission} brand commission, with a creator payout of ${payout}.`,
+      effectiveRate: (rate: string) => `${rate} effective take rate`,
+      brandCommissionLabel: "Total brand commission",
+      platformShareLabel: "GoWish platform share",
+      mathTitle: "How the math works",
+      mathStep1: (brandCommission: string) =>
+        `Sales × Commission = ${brandCommission} brand commission`,
+      mathStep2: (payout: string, takeHome: string) =>
+        `Brand commission × ${payout} payout = ${takeHome} to you`,
+      mathStep3: (platformShare: string) =>
+        `Remaining ${platformShare} keeps GoWish running (hosting, brand partnerships, support)`,
+      scenariosLabel: "Try a scenario",
+      scenarios: [
+        { name: "Micro creator", sales: 50000, salesLabel: "50K sales" },
+        { name: "Growing creator", sales: 250000, salesLabel: "250K sales" },
+        { name: "Established", sales: 1000000, salesLabel: "1M sales" },
+        { name: "Top 1%", sales: 3529412, salesLabel: "3M sales" },
+      ],
+      forYou: "for you",
     },
   },
   da: {
@@ -199,6 +259,7 @@ export const translations = {
         { label: "Fordele", hash: "/#fordele" },
         { label: "Kom i gang", hash: "/#kom-i-gang" },
         { label: "Sammenligning", hash: "/#sammenligning" },
+        { label: "Beregner", to: "/commission-calculator" },
         { label: "Cases", to: "/cases" },
         { label: "Learning Bank", to: "/learning-bank" },
       ],
@@ -227,7 +288,8 @@ export const translations = {
       eyebrow: "01 — Fordele",
       h2a: "Gem det. Del det.",
       h2italic: "Tjen på det.",
-      subtitle: "Et creator-program bygget rundt om de produkter, du alligevel ville anbefale — med et permanent hjem og en permanent udbetaling.",
+      subtitle:
+        "Et creator-program bygget rundt om de produkter, du alligevel ville anbefale — med et permanent hjem og en permanent udbetaling.",
       cards: [
         {
           n: "01",
@@ -265,7 +327,8 @@ export const translations = {
       eyebrow: "02 — Platformen",
       h2a: "Platform oversigt",
       h2italic: "& rækkevidde.",
-      subtitle: "Nøgletal der driver dine kampagners succes — på tværs af hele Ønskeskyen-økosystemet.",
+      subtitle:
+        "Nøgletal der driver dine kampagners succes — på tværs af hele Ønskeskyen-økosystemet.",
       stats: [
         { num: "3,6M", label: "Brugere i DK", desc: "På tværs af hele platformen" },
         { num: "950", label: "Creators i netværket", desc: "Aktive og klar til samarbejde" },
@@ -281,7 +344,8 @@ export const translations = {
       eyebrow: "03 — Kom i gang",
       h2a: "Byg, del, tjen —",
       h2italic: "alt i én app.",
-      subtitle: "Fra tilmelding til første kommission på under en dag. Ingen outreach, ingen kontrakter, ingen jagtede fakturaer.",
+      subtitle:
+        "Fra tilmelding til første kommission på under en dag. Ingen outreach, ingen kontrakter, ingen jagtede fakturaer.",
       steps: [
         {
           n: "01",
@@ -310,18 +374,19 @@ export const translations = {
       eyebrow: "04 — Sammenligning",
       h2a: "GoWish vs.",
       h2italic: "resten.",
-      subtitle: "De fleste affiliate-værktøjer er bygget til webshops. GoWish er bygget til den måde creators faktisk anbefaler på — liste-first, permanent, personlig.",
+      subtitle:
+        "De fleste affiliate-værktøjer er bygget til webshops. GoWish er bygget til den måde creators faktisk anbefaler på — liste-first, permanent, personlig.",
       featureLabel: "Feature",
       col1: "GoWish Creator",
       col2: "Typisk affiliate-link",
       rows: [
-        ["Permanent hjem til dine anbefalinger",  true,  false],
-        ["Tjen kommission på hvert salg",          true,  true ],
-        ["75.000+ shops uden outreach",            true,  false],
-        ["Ingen ansøgning eller venteliste",       true,  false],
-        ["Followers kan handle igen og igen",      true,  false],
-        ["Indbygget analytics dashboard",          true,  false],
-        ["Forsvinder efter 24 timer (Stories)",    false, true ],
+        ["Permanent hjem til dine anbefalinger", true, false],
+        ["Tjen kommission på hvert salg", true, true],
+        ["75.000+ shops uden outreach", true, false],
+        ["Ingen ansøgning eller venteliste", true, false],
+        ["Followers kan handle igen og igen", true, false],
+        ["Indbygget analytics dashboard", true, false],
+        ["Forsvinder efter 24 timer (Stories)", false, true],
       ] as [string, boolean, boolean][],
     },
     cta: {
@@ -329,13 +394,15 @@ export const translations = {
       h2a: "Bliv en del af",
       h2italic: "Ønskeskyen",
       h2end: "creator-universet.",
-      subtitle: "Slut dig til 950+ creators der forvandler anbefalinger til permanente udbetalinger. Beta-adgang er åben — ingen venteliste.",
+      subtitle:
+        "Slut dig til 950+ creators der forvandler anbefalinger til permanente udbetalinger. Beta-adgang er åben — ingen venteliste.",
       btn1: "Opret min konto",
       btn2: "Udforsk Learning Bank",
     },
     footer: {
       title: "Ønskeskyen Creators",
-      tagline: "Et creator-program bygget rundt om de produkter, du alligevel ville anbefale — med et permanent hjem og en permanent udbetaling.",
+      tagline:
+        "Et creator-program bygget rundt om de produkter, du alligevel ville anbefale — med et permanent hjem og en permanent udbetaling.",
       programCol: {
         title: "Program",
         links: [
@@ -350,6 +417,7 @@ export const translations = {
         links: [
           { label: "Learning Bank", href: "/learning-bank" },
           { label: "Case Studies", href: "/learning-bank" },
+          { label: "Kommissionsberegner", href: "/commission-calculator" },
           { label: "Partnershops", href: "/#brands" },
         ],
       },
@@ -370,7 +438,8 @@ export const translations = {
       h1a: "Case studies",
       h1italic: "fra creators",
       h1b: "der faktisk tjener.",
-      subtitle: "Ingen teori. Ægte tal, ægte ønskelister, ægte playbooks — delt af GoWish creator-fællesskabet så du kan låne det der virker.",
+      subtitle:
+        "Ingen teori. Ægte tal, ægte ønskelister, ægte playbooks — delt af GoWish creator-fællesskabet så du kan låne det der virker.",
       searchPlaceholder: "Søg case studies, creators, kategorier…",
       featuredLabel: "Fremhævet studie",
       allStudiesLabel: "Alle case studies",
@@ -380,8 +449,60 @@ export const translations = {
       watchPlaybook: "Se playbook",
       videoClips: "klip",
       moreStudies: "Mere fra Learning Bank",
-      categories: ["Alle", "Skønhed & Hudpleje", "Mode", "Livsstil", "Hjem & Indretning", "Wellness", "Tech & Gadgets"],
+      categories: [
+        "Alle",
+        "Skønhed & Hudpleje",
+        "Mode",
+        "Livsstil",
+        "Hjem & Indretning",
+        "Wellness",
+        "Tech & Gadgets",
+      ],
       readTime: (n: string) => `${n} min læsning`,
+    },
+    commissionCalculator: {
+      eyebrow: "Kommissionsberegner",
+      h1a: "Se hvad du faktisk kan tjene",
+      h1italic: "på Ønskeskyen.",
+      subtitle:
+        "Træk i skydeknapperne for at modellere din butik. Gennemsnitlig brand-kommission er 8,5%, og Ønskeskyen udbetaler 80% af det tilbage til dig.",
+      salesLabel: "Salg i din butik",
+      salesHint: "Bruttoværdi af produkter solgt gennem din Ønskeskyen-butik",
+      salesMin: "$10K",
+      salesMid: "$1M",
+      salesMax: "$5M",
+      commissionLabel: "Brand-kommissionssats",
+      commissionHint: "Gennemsnitlig % brands betaler pr. salg — 8,5% er vores platformsgennemsnit",
+      commissionMin: "1%",
+      commissionMid: "8,5%",
+      commissionMax: "25%",
+      payoutLabel: "Ønskeskyen creator-udbetaling",
+      payoutHint: "Andel af brand-kommissionen der lander på din konto",
+      payoutMin: "50%",
+      payoutMid: "80%",
+      payoutMax: "100%",
+      resetLabel: "Nulstil til standardværdier",
+      resultLabel: "Din udbetaling",
+      resultDesc: (sales: string, commission: string, payout: string) =>
+        `Ved ${sales} i butikssalg med ${commission} brand-kommission og ${payout} creator-udbetaling.`,
+      effectiveRate: (rate: string) => `${rate} effektiv udbetalingssats`,
+      brandCommissionLabel: "Samlet brand-kommission",
+      platformShareLabel: "Ønskeskyens andel",
+      mathTitle: "Sådan regner vi",
+      mathStep1: (brandCommission: string) =>
+        `Salg × Kommission = ${brandCommission} brand-kommission`,
+      mathStep2: (payout: string, takeHome: string) =>
+        `Brand-kommission × ${payout} udbetaling = ${takeHome} til dig`,
+      mathStep3: (platformShare: string) =>
+        `De resterende ${platformShare} holder Ønskeskyen kørende (hosting, brand-partnerskaber, support)`,
+      scenariosLabel: "Prøv et scenarie",
+      scenarios: [
+        { name: "Mikro-creator", sales: 50000, salesLabel: "50K i salg" },
+        { name: "Voksende creator", sales: 250000, salesLabel: "250K i salg" },
+        { name: "Etableret", sales: 1000000, salesLabel: "1M i salg" },
+        { name: "Top 1%", sales: 3529412, salesLabel: "3M i salg" },
+      ],
+      forYou: "til dig",
     },
   },
 } as const;

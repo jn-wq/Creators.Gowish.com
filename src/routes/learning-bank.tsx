@@ -26,14 +26,12 @@ function LearningBankPage() {
             </p>
             <h1 className="display mt-5 text-[clamp(2.4rem,6vw,4.8rem)] max-w-[18ch]">
               {lb.h1a}{" "}
-              <span className="font-['Instrument_Serif'] italic font-normal text-accent">
+              <span className="font-['Fraunces'] italic font-normal text-accent">
                 {lb.h1italic}
               </span>{" "}
               {lb.h1b}
             </h1>
-            <p className="mt-6 max-w-[58ch] text-[19px] text-ink-2 leading-[1.45]">
-              {lb.subtitle}
-            </p>
+            <p className="mt-6 max-w-[58ch] text-[19px] text-ink-2 leading-[1.45]">{lb.subtitle}</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <label className="flex items-center gap-2 rounded-full border border-line bg-bg px-4 py-2.5 w-full max-w-md">
@@ -45,7 +43,8 @@ function LearningBankPage() {
                 />
               </label>
               <span className="label-kpi">
-                {caseStudies.length} {lang === "da" ? "studier" : "studies"} · {lb.categories.length - 1} {lang === "da" ? "kategorier" : "categories"}
+                {caseStudies.length} {lang === "da" ? "studier" : "studies"} ·{" "}
+                {lb.categories.length - 1} {lang === "da" ? "kategorier" : "categories"}
               </span>
             </div>
 
@@ -79,12 +78,16 @@ function LearningBankPage() {
                   <h2 className="title-l mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] max-w-[20ch]">
                     {fl.title}
                   </h2>
-                  <p className="mt-5 text-[17px] text-ink-2 max-w-[52ch] leading-[1.5]">{fl.excerpt}</p>
+                  <p className="mt-5 text-[17px] text-ink-2 max-w-[52ch] leading-[1.5]">
+                    {fl.excerpt}
+                  </p>
                   <div className="mt-8 flex items-center gap-4">
                     <Avatar name={f.creator} />
                     <div>
                       <div className="font-semibold text-[15px]">{f.creator}</div>
-                      <div className="text-[13px] text-ink-3">{f.handle} · {fl.readTime}</div>
+                      <div className="text-[13px] text-ink-3">
+                        {f.handle} · {fl.readTime}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -123,7 +126,9 @@ function LearningBankPage() {
                     <span className="label-kpi !text-accent-ink">{cl.category}</span>
                     <ArrowUpRight className="h-4 w-4 text-ink-3 group-hover:text-accent transition-colors" />
                   </div>
-                  <h3 className="text-[22px] font-semibold tracking-tight leading-[1.15]">{cl.title}</h3>
+                  <h3 className="text-[22px] font-semibold tracking-tight leading-[1.15]">
+                    {cl.title}
+                  </h3>
                   <p className="text-[15px] text-ink-2 leading-[1.5] line-clamp-3">{cl.excerpt}</p>
                   <div className="mt-auto pt-4 border-t border-line flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -149,11 +154,17 @@ function LearningBankPage() {
 }
 
 function Avatar({ name, small }: { name: string; small?: boolean }) {
-  const initials = name.split(" ").map((s) => s[0]).slice(0, 2).join("");
+  const initials = name
+    .split(" ")
+    .map((s) => s[0])
+    .slice(0, 2)
+    .join("");
   const palettes = ["bg-pink-2 text-accent-ink", "bg-blue-soft-2 text-ink", "bg-cream text-ink"];
   const c = palettes[name.length % palettes.length];
   const size = small ? "h-9 w-9 text-[12px]" : "h-12 w-12 text-[15px]";
   return (
-    <span className={`grid place-items-center rounded-full ${c} ${size} font-semibold`}>{initials}</span>
+    <span className={`grid place-items-center rounded-full ${c} ${size} font-semibold`}>
+      {initials}
+    </span>
   );
 }

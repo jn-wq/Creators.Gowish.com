@@ -9,19 +9,37 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LearningBankRouteImport } from './routes/learning-bank'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CasesRouteImport } from './routes/cases'
+import { Route as CommissionCalculatorRouteImport } from './routes/commission-calculator'
+import { Route as LearningBankRouteImport } from './routes/learning-bank'
+import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
 import { Route as LearningBankSlugRouteImport } from './routes/learning-bank.$slug'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesRoute = CasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommissionCalculatorRoute = CommissionCalculatorRouteImport.update({
+  id: '/commission-calculator',
+  path: '/commission-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearningBankRoute = LearningBankRouteImport.update({
   id: '/learning-bank',
   path: '/learning-bank',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
+const CasesSlugRoute = CasesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CasesRoute,
 } as any)
 const LearningBankSlugRoute = LearningBankSlugRouteImport.update({
   id: '/$slug',
@@ -31,35 +49,86 @@ const LearningBankSlugRoute = LearningBankSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cases': typeof CasesRouteWithChildren
+  '/commission-calculator': typeof CommissionCalculatorRoute
   '/learning-bank': typeof LearningBankRouteWithChildren
+  '/cases/$slug': typeof CasesSlugRoute
   '/learning-bank/$slug': typeof LearningBankSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cases': typeof CasesRouteWithChildren
+  '/commission-calculator': typeof CommissionCalculatorRoute
   '/learning-bank': typeof LearningBankRouteWithChildren
+  '/cases/$slug': typeof CasesSlugRoute
   '/learning-bank/$slug': typeof LearningBankSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cases': typeof CasesRouteWithChildren
+  '/commission-calculator': typeof CommissionCalculatorRoute
   '/learning-bank': typeof LearningBankRouteWithChildren
+  '/cases/$slug': typeof CasesSlugRoute
   '/learning-bank/$slug': typeof LearningBankSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/learning-bank' | '/learning-bank/$slug'
+  fullPaths:
+    | '/'
+    | '/cases'
+    | '/commission-calculator'
+    | '/learning-bank'
+    | '/cases/$slug'
+    | '/learning-bank/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/learning-bank' | '/learning-bank/$slug'
-  id: '__root__' | '/' | '/learning-bank' | '/learning-bank/$slug'
+  to:
+    | '/'
+    | '/cases'
+    | '/commission-calculator'
+    | '/learning-bank'
+    | '/cases/$slug'
+    | '/learning-bank/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/cases'
+    | '/commission-calculator'
+    | '/learning-bank'
+    | '/cases/$slug'
+    | '/learning-bank/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CasesRoute: typeof CasesRouteWithChildren
+  CommissionCalculatorRoute: typeof CommissionCalculatorRoute
   LearningBankRoute: typeof LearningBankRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commission-calculator': {
+      id: '/commission-calculator'
+      path: '/commission-calculator'
+      fullPath: '/commission-calculator'
+      preLoaderRoute: typeof CommissionCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learning-bank': {
       id: '/learning-bank'
       path: '/learning-bank'
@@ -67,12 +136,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearningBankRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/cases/$slug': {
+      id: '/cases/$slug'
+      path: '/$slug'
+      fullPath: '/cases/$slug'
+      preLoaderRoute: typeof CasesSlugRouteImport
+      parentRoute: typeof CasesRoute
     }
     '/learning-bank/$slug': {
       id: '/learning-bank/$slug'
@@ -83,6 +152,16 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface CasesRouteChildren {
+  CasesSlugRoute: typeof CasesSlugRoute
+}
+
+const CasesRouteChildren: CasesRouteChildren = {
+  CasesSlugRoute: CasesSlugRoute,
+}
+
+const CasesRouteWithChildren = CasesRoute._addFileChildren(CasesRouteChildren)
 
 interface LearningBankRouteChildren {
   LearningBankSlugRoute: typeof LearningBankSlugRoute
@@ -98,6 +177,8 @@ const LearningBankRouteWithChildren = LearningBankRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CasesRoute: CasesRouteWithChildren,
+  CommissionCalculatorRoute: CommissionCalculatorRoute,
   LearningBankRoute: LearningBankRouteWithChildren,
 }
 export const routeTree = rootRouteImport
